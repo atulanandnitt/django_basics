@@ -89,7 +89,43 @@ class Tree:
             if len(q1) == 0 and len(q2) ==0:
                 break
 
+    def rightView_better(self):
         
+        # code here
+        # temp = root
+        q1 = [self.root]
+        q2 = list()
+        right_data = list()
+        # print("right view")
+        # print(len(q1), len(q2))
+        while 1:
+            # print("q1")
+            if len(q2) == 0 and len(q1) != 0:
+                # print("proccessing q1")
+                while len(q1) != 0:
+                    if len(q1) == 1:
+                        right_data.append(q1[0].data)
+                    temp = q1.pop(0)
+                    if temp.left:
+                        q2.append(temp.left)
+                    if temp.right:
+                        q2.append(temp.right)
+                
+            if len(q1) == 0 and len(q2) != 0:
+                # print("proccessing q2")
+                while len(q2) != 0:
+                    if len(q2) == 1:
+                        right_data.append(q2[0].data)
+                    temp = q2.pop(0)
+                    if temp.left:
+                        q1.append(temp.left)
+                    if temp.right:
+                        q2.append(temp.right)
+            if len(q1) == 0  and len(q2) == 0:
+                break
+        return right_data
+
+
     def bfs(self):
         self.root.level=0
         temp_level=self.root.level
@@ -532,6 +568,8 @@ print("bst.leftViewOfTree() : ")
 bst.leftViewOfTree()
 print("bst.rightViewOfTree() : ")
 bst.rightViewOfTree()
+
+print("bst.rightView_better()", bst.rightView_better())
 
 print("bst.rightViewOfTree_trickySol() : ")
 bst.rightViewOfTree()        
