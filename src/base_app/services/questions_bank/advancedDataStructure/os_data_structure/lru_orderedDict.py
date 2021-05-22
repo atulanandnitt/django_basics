@@ -23,9 +23,9 @@ from collections import OrderedDict
 
 class LRUCache:
 
-    def __init__(self):
+    def __init__(self, size=2):
         self.cache = OrderedDict()
-        self.size = 2
+        self.size = size
 
     def fetch(self, key):
         if key not in self.cache:

@@ -1,48 +1,52 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Mar 28 07:38:16 2018
+class Node:
+    def __init__(self, val):
+        self.next = None
+        self.data = val
 
-@author: atanand
-"""
+class LinkedList:
 
-#stack
-
-class Stack:
     def __init__(self):
-        self.items=[]
-        top=0
-        bottom=0
+        self.head = None
     
-    def isFull(self):
-        return False
-    
-    def isEmpty(self):
-        return self.items ==[]
-    
-    def push(self,val):
-        if self.isFull():
-            return
+    def add_node(self, val):
+        if self.head is None:
+            self.head = Node(val)
         else:
-            self.items.append(val)
+            temp = self.head
+            while temp.next:
+                temp = temp.next
+            temp.next = Node(val)
     
-    def pop(self):
-        if self.isEmpty():
-            print("Stack is empty, pop operation can't be used")
-        else:
-            return self.items.pop()
-    
-    def top(self):
-        if self.isEmpty():
-            print("Stack is empty, top operation can't be used")
-        else:
-            return self.items[len(self.items) -1]
-        
-     
-s1=Stack()
-s1.push('a')
-s1.push('b')
-s1.push('a')
-s1.push('b')
+    def display(self):
+        temp = self.head
+        while temp:
+            print(temp.data, "" , end="")
+            temp = temp.next
 
-for i in range(4):
-    print(s1.top())
+    def rev(self):
+        p = self.head
+        q = p.next
+        r = p.next
+        p.next = None
+        while 1:
+            if r.next:
+                r = r.next
+            q.next = p
+            p = q
+            q = r
+            if q.next is None:
+                q.next = p
+                self.head = q
+                break            
+
+    
+ll = LinkedList()
+list1 = [1,3,5,7,9,11]
+for item in list1:
+    ll.add_node(item)
+
+ll.display()
+
+ll.rev()
+print("after rev: ")
+ll.display()

@@ -1,4 +1,74 @@
 
+class Stack:
+
+    def __init__(self, limit=10):
+        self.stack_custom = list()
+        self.MAX_LENGTH = limit
+
+    def pop(self):
+        if len(self.stack_custom) >= 0:
+            # return self.stack_custom.pop()
+            temp = self.stack_custom[-1]
+            self.stack_custom = self.stack_custom[:-1]
+            return temp
+        else:
+            print("stack is EMPTY")
+            return -1
+
+    def push(self, data):
+        if len(self.stack_custom) < self.MAX_LENGTH:
+            self.stack_custom.append(data)
+            print("pused item : ", data)
+        else:
+            print("stack is FULL")
+
+
+def is_opening(item):
+    if item in "[{(":
+        return True
+    else:
+        return False
+
+def is_closing(item):
+    if item in ")}]":
+        return True
+    else:
+        return False
+
+def reverse_of(temp):
+    if temp == "(":
+        return ")"
+    elif temp == "{":
+        return "}"
+    elif temp == "[":
+        return "]"        
+
+def is_balanced_paranthesis(s1, list1):
+    for item in list1:
+        if is_opening(item):
+            s1.push(item)
+        elif is_closing(item):
+            temp = s1.pop()
+            if item is reverse_of(temp):
+                continue
+            else:
+                print("not balanced paranthesis")
+                # break
+                return False
+    else:
+        return True
+
+s1 = Stack()
+list1= "[{()}]"
+list2= "{()[]}({)}"
+list3= "[{()(){}[]}]"
+
+# print(is_balanced_paranthesis(s1, list1))
+# print(is_balanced_paranthesis(s1, list2))
+print(is_balanced_paranthesis(s1, list3))
+
+
+
 
 #balanced Paranthesis check: ???????????
 
@@ -34,8 +104,8 @@ inputStr='({[]})'
 print(balance_check(inputStr))
 
 print(balance_check('{()}'))
-result=balance_check("{()[]}({)}")
-
+# result=balance_check("{()[]}({)}")
+result=balance_check("[{()}]")
 
 
 
