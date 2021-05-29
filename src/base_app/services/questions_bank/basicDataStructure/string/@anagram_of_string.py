@@ -16,6 +16,19 @@ class Solution:
         return sol
 
 
+# https://leetcode.com/explore/challenge/card/may-leetcoding-challenge/536/week-3-may-15th-may-21st/3333/
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        # if len(s2) < len(s1):
+        #     s1, s2 = s2, s1
+        s1_d = {key: s1.count(key) for key in set(s1)}
+        sol = list()
+        for i, item in enumerate(s2):
+            temp_s2 = s2[i:i+len(s1)] 
+            temp_s2_d = {key: temp_s2.count(key) for key in set(temp_s2)}
+            if temp_s2_d == s1_d:
+                return True
+        return False
 
         
 def Anagram_of_String2(str1,str2):
