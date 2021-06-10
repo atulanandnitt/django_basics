@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from base_app.views import (Summation, SummationGeneric)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('v1.0/summation', Summation.as_view()),
+    path('v2.0/summation', SummationGeneric.as_view()),
+    
 ]
